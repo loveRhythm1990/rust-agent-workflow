@@ -1,0 +1,8 @@
+[package]
+name = "chapter-04-state-machine"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+chapter-03-task-model = { path = "../03-task-model" }
