@@ -27,26 +27,26 @@ cargo run -p chapter-01-cargo
 
 ## 学习路线
 
-| 章 | 主题 | 核心内容 | 状态 |
+| 章 | Workflow 主线 | Rust 配套 | 状态 |
 | --- | --- | --- | --- |
-| 01 | [Cargo 与第一个程序](01-cargo/README.md) | 项目结构、变量、函数 | 已实现 |
-| 02 | [任务输入与字符串处理](02-ownership/README.md) | 所有权、借用、生命周期入门 | 规划中 |
-| 03 | [任务与消息建模](03-task-model/README.md) | struct、enum、match、集合 | 规划中 |
-| 04 | [JSON 与文件操作](04-json-files/README.md) | 模块、Serde、配置与日志 | 规划中 |
-| 05 | [受控子进程执行](05-process/README.md) | Result、错误处理、参数数组 | 规划中 |
-| 06 | [Agent 适配器](06-adapters/README.md) | trait、泛型、模拟 CLI | 规划中 |
-| 07 | [接入 Codex 与 Claude Code](07-dual-cli/README.md) | 结构化输出、显式会话 ID | 规划中 |
-| 08 | [需求契约与验收矩阵](08-contracts/README.md) | 需求充分性、版本冻结、独立判题依据 | 规划中 |
-| 09 | [工作区隔离与代码快照](09-snapshots/README.md) | worktree、固定 SHA、只读边界 | 规划中 |
-| 10 | [状态机与决策规则](10-state-machine/README.md) | 运行状态、质量结论、停止原因分离 | 规划中 |
-| 11 | [独立验证与证据账本](11-evidence/README.md) | 原问题复现、证据有效性与失效 | 规划中 |
-| 12 | [审查发现核实](12-findings/README.md) | 确认、反驳、未决、去重与误报 | 规划中 |
-| 13 | [有限修复与收敛判断](13-convergence/README.md) | 轮次、停滞、振荡、回归 | 规划中 |
-| 14 | [异步执行与资源预算](14-async-budget/README.md) | Tokio、超时、取消、进程组清理 | 规划中 |
-| 15 | [持久化与崩溃恢复](15-recovery/README.md) | SQLite、事务、租约、过期结果拒绝 | 规划中 |
-| 16 | [人工介入与安全边界](16-human-security/README.md) | 决策版本绑定、提示注入、权限限制 | 规划中 |
-| 17 | [故障注入与效果评估](17-evaluation/README.md) | 恢复测试、查准率、召回率、成本对比 | 规划中 |
-| 18 | [接入 Hermes 与完整交付](18-hermes/README.md) | 受控协调接口、端到端案例、交付包 | 规划中 |
+| 01 | [项目启动与最小任务程序](01-cargo/README.md) | Cargo、变量、函数、格式化输出 | 启动示例已实现，任务入口待补充 |
+| 02 | [任务契约与验收标准](02-contracts/README.md) | String、所有权、借用、基础函数 | 规划中 |
+| 03 | [任务、运行、结果的数据模型](03-task-model/README.md) | struct、enum、Option、Vec、Serde | 规划中 |
+| 04 | [状态机与确定性决策](04-state-machine/README.md) | match、模块、纯函数、单元测试 | 规划中 |
+| 05 | [模拟执行器与完整流程](05-simulation/README.md) | Result、错误传播、集合与测试替身 | 规划中 |
+| 06 | [受控子进程、超时与取消](06-process/README.md) | Command、错误类型、Tokio 与 async 入门 | 规划中 |
+| 07 | [Agent 接口与结构化输出校验](07-adapters/README.md) | trait、组合、Serde、JSON 校验 | 规划中 |
+| 08 | [工作区隔离与快照冻结](08-snapshots/README.md) | Path、PathBuf、文件操作、资源清理 | 规划中 |
+| 09 | [接入 Codex 编码与 Claude Code 审查](09-dual-cli/README.md) | 配置读取、适配器实现、事件解析 | 规划中 |
+| 10 | [独立验证与证据有效性](10-evidence/README.md) | 数据校验、哈希、迭代器 | 规划中 |
+| 11 | [审查发现核实与误报处理](11-findings/README.md) | 枚举建模、映射集合、状态更新 | 规划中 |
+| 12 | [有限修复、预算与收敛判断](12-convergence/README.md) | Duration、计数器、规则组合 | 规划中 |
+| 13 | [SQLite 持久化与事件记录](13-persistence/README.md) | 数据库访问、事务、错误上下文 | 规划中 |
+| 14 | [崩溃恢复、幂等与过期结果拒绝](14-recovery/README.md) | 幂等接口、事务条件更新、恢复测试 | 规划中 |
+| 15 | [人工决策与交付](15-human-delivery/README.md) | CLI 参数、报告格式、文件组织 | 规划中 |
+| 16 | [安全边界与故障注入验收](16-security-faults/README.md) | 集成测试、测试夹具、平台条件编译 | 规划中 |
+| 17 | [实际任务试点与效果评估](17-evaluation/README.md) | 统计汇总、Trace 解析、报告生成 | 规划中 |
+| 18 | [可选 Hermes 协调入口](18-hermes/README.md) | 接口契约、适配与契约测试 | 规划中 |
 
 ## 学习方式
 
@@ -57,7 +57,9 @@ cargo run -p chapter-01-cargo
 
 新手可以交替阅读两份文档；熟悉 Rust 的读者可直接沿 workflow 主线前进。采用直接、清晰的实现，只在具体需求出现时引入抽象、泛型和异步。尚未实现章节的 RUST.md 只列计划，不伪装成完成的教程。
 
-章节保留原有 18 章顺序，但真实 CLI 在第 7 章接入时只用于受控实验。需求契约、快照、状态机、超时取消与恢复等门禁齐备并验收后，才启用自动写入与修复的实际任务模式。
+章节按 workflow 依赖推进：第 1—5 章建立任务契约、状态机与模拟闭环；第 6—9 章实现受控执行、快照和真实双 CLI 实验；第 10—16 章补齐验证、核实、预算、恢复与安全验收；第 17 章进行实际任务试点；第 18 章可选接入 Hermes。
+
+第 9 章接入真实 CLI 只用于受控实验。第 16 章首版可靠性门禁验收后，才在第 17 章启用受控实际任务。实际任务试点通过并明确适用范围后，才评估生产就绪；章节完成本身不代表生产可用。
 
 目前根目录使用 Cargo workspace，仅注册已实现章节。后续每章实现时再加入 workspace，避免目录占位被误认为可运行功能。
 
