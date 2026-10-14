@@ -134,3 +134,7 @@ println!("第 {} 章", chapter);
 - 能解释“编译成功”和“行为符合预期”需要分别检查。
 
 [返回学习路线](../README.md) · [下一章：任务输入与字符串处理](../02-ownership/README.md)（规划中）
+
+## Rust 新手配套
+
+参见 [Rust 语法与用法](RUST.md)。本章 README 说明 workflow 实现，配套文档解释代码涉及的 Rust 概念。
