@@ -5,3 +5,7 @@ version = 4
 [[package]]
 name = "chapter-01-cargo"
 version = "0.1.0"
+
+[[package]]
+name = "chapter-02-contracts"
+version = "0.1.0"
