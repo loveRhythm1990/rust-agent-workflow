@@ -1,0 +1,10 @@
+[package]
+name = "chapter-03-task-model"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+chapter-02-contracts = { path = "../02-contracts" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

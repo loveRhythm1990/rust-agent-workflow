@@ -2,7 +2,7 @@
 
 一个用 Rust 实现的本地编程任务 workflow 控制器：让 Codex CLI 编码、Claude Code CLI 审查，由控制器执行验收、管理有限修复，并交付可复查的代码与证据。
 
-项目以实现可用于实际任务的系统为主线，每章配套 Rust 新手讲解。当前第一章启动示例及第二章任务契约校验已实现，下述系统架构仍是目标设计。
+项目以实现可用于实际任务的系统为主线，每章配套 Rust 新手讲解。当前第一章启动示例、第二章文本契约校验与第三章数据模型已实现，下述系统架构仍是目标设计。
 
 ## 我们要设计的系统
 
@@ -57,7 +57,7 @@ cargo run -p chapter-01-cargo
 | --- | --- | --- | --- |
 | 01 | [项目启动与最小任务程序](01-cargo/README.md) | Cargo、变量、函数、格式化输出 | 启动示例已实现，任务入口待补充 |
 | 02 | [任务契约与验收标准](02-contracts/README.md) | String、所有权、借用、基础函数 | 已实现文本契约校验 |
-| 03 | [任务、运行、结果的数据模型](03-task-model/README.md) | struct、enum、Option、Vec、Serde | 规划中 |
+| 03 | [任务、运行、结果的数据模型](03-task-model/README.md) | struct、enum、Option、Vec、Serde | 已实现数据模型与 JSON 往返 |
 | 04 | [状态机与确定性决策](04-state-machine/README.md) | match、模块、纯函数、单元测试 | 规划中 |
 | 05 | [模拟执行器与完整流程](05-simulation/README.md) | Result、错误传播、集合与测试替身 | 规划中 |
 | 06 | [编排层选型与接入](06-orchestration/README.md) | 模块、接口建模、配置、JSON 与错误传播 | 规划中 |
