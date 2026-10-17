@@ -1,0 +1,6 @@
+{
+  "adapter": "simulated",
+  "model": "glm-5.3",
+  "no_tools": true,
+  "session_dir": null
+}
