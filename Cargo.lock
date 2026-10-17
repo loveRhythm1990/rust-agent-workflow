@@ -27,6 +27,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "chapter-05-simulation"
+version = "0.1.0"
+dependencies = [
+ "chapter-03-task-model",
+ "chapter-04-state-machine",
+ "serde_json",
+]
+
+[[package]]
 name = "itoa"
 version = "1.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
