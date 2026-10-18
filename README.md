@@ -2,7 +2,7 @@
 
 一个用 Rust 实现的本地编程任务 workflow 控制器：让 Codex CLI 编码、Claude Code CLI 审查，由控制器执行验收、管理有限修复，并交付可复查的代码与证据。
 
-项目以实现可用于实际任务的系统为主线，每章配套 Rust 新手讲解。当前第一至第六章已实现：启动示例、契约校验、数据模型、状态机与决策规则、模拟闭环、编排选型与模拟委派。下述系统架构仍是目标设计。
+项目以实现可用于实际任务的系统为主线，每章配套 Rust 新手讲解。当前第一至第八章已实现：启动示例、契约校验、数据模型、状态机与决策规则、模拟闭环、编排选型、受控执行、Agent 接口与报告校验。下述系统架构仍是目标设计。
 
 ## 我们要设计的系统
 
@@ -61,8 +61,8 @@ cargo run -p chapter-01-cargo
 | 04 | [状态机与确定性决策](04-state-machine/README.md) | match、模块、纯函数、单元测试 | 已实现状态机与决策规则 |
 | 05 | [模拟执行器与完整流程](05-simulation/README.md) | Result、错误传播、集合与测试替身 | 已实现模拟闭环 |
 | 06 | [编排层选型与接入](06-orchestration/README.md) | 模块、接口建模、配置、JSON 与错误传播 | 已实现选型与模拟委派 |
-| 07 | [受控执行适配、超时与取消](07-process/README.md) | Command、错误类型、Tokio 与 async 入门 | 规划中 |
-| 08 | [Agent 接口与结构化输出校验](08-adapters/README.md) | trait、组合、Serde、JSON 校验 | 规划中 |
+| 07 | [受控执行适配、超时与取消](07-process/README.md) | Command、错误类型、Tokio 与 async 入门 | 已实现受控执行与整组清理 |
+| 08 | [Agent 接口与结构化输出校验](08-adapters/README.md) | trait、组合、Serde、JSON 校验 | 已实现统一接口与报告校验 |
 | 09 | [工作区隔离与快照冻结](09-snapshots/README.md) | Path、PathBuf、文件操作、资源清理 | 规划中 |
 | 10 | [接入 Codex 编码与 Claude Code 审查](10-dual-cli/README.md) | 配置读取、适配器实现、事件解析 | 规划中 |
 | 11 | [独立验证与证据有效性](11-evidence/README.md) | 数据校验、哈希、迭代器 | 规划中 |

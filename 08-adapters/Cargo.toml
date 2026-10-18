@@ -1,0 +1,11 @@
+[package]
+name = "chapter-08-adapters"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+chapter-03-task-model = { path = "../03-task-model" }
+chapter-06-orchestration = { path = "../06-orchestration" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

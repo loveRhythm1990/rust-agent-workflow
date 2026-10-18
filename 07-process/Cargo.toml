@@ -1,0 +1,9 @@
+[package]
+name = "chapter-07-process"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+tokio = { version = "1", features = ["macros", "process", "rt", "rt-multi-thread", "time", "io-util"] }
+libc = "0.2"
