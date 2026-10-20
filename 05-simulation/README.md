@@ -8,6 +8,51 @@
 
 本章用脚本化替身替代双 CLI：你要验收的每一步——实现、验收、审查——都由一个不变的脚本来扮演。脚本定下来，结果是确定的：四条路径任意重复运行，输出完全一致。只有闭环规则对了、错了都知道哪一步错，才谈得上把 Codex / Claude Code 接进来。
 
+## 实现思路：先证明闭环，再接执行者
+
+本章的实现顺序和第 9 章一样：先想清楚"替身要证明什么"，再倒推代码。
+
+**第一步：把"模拟闭环"翻译成三个证据需求。**
+
+| 证据需求 | 反问题 | 对应机制 |
+| --- | --- | --- |
+| 规则走在状态机里 | 脚本会不会偷偷主导流程？ | `transition`：脚本给的只是验收结果，走哪条边只看允许表 |
+| 结论由独立规则算出来 | 替身写"PASS"就信吗？ | `decide` + `plan_next`：清单 → 结论 → 动作，由控制器侧计算 |
+| 档案与后续章节同形 | 模拟编的格式将来要不要重写？ | 复用第 3 章 `TaskRecord`：`runs` / `verdict` / `stop_reason`，不发明新词汇 |
+
+**第二步：把三个机制串成一条数据流。** 脚本进、规则过、档案出，每一步都能单独拒绝（重复登记、脚本耗尽、非法转移），拒绝不会伪装成成功。
+
+**第三步：用路径清单推导测试。** 四条路径（PASS / FAIL→修复→PASS / FAIL→停止 / UNKNOWN→停止）加上三个拒绝场景，正好覆盖状态机的每条边与每个错误变体——测试不是按"代码行"送的，是按"流程图"送的。
+
+**第四步：被否掉的方案。**
+
+| 方案 | 否掉的原因 |
+| 先接真实 CLI 把闭环跑通 | 规则 bug 与进程/账号 bug 会混在同一次运行里，定位成本成倍；先让状态机每条边可重复跑通，真实执行只引入新失败 |
+| 让脚本给出最终状态或判定 | 等于让替身决定流程，控制器又要回去信它；路线与结论只能由 `transition` / `decide` / `plan_next` 算出来 |
+| 为模拟发明一份新 JSON 格式 | 模拟与真实共用第 3 章 `TaskRecord`；两套词汇到持久化时会打架 |
+| 用 `exit_code` 携带质量结论 | 第 3 章已定退出码是运行事实；模拟里的 `exit_code: 0` 恰好用来证明运行成功 ≠ 质量通过 |
+
+## 架构总览
+
+```text
+Script（脚本化替身，只给验收结果）
+  │ attempts: Vec<AttemptPlan> → CheckOutcome[]
+  ▼
+run_simulation
+  ├─ transition（第 4 章状态机：每一步只走允许表里的边）
+  ├─ build_summary（验收结果 → VerificationSummary，重复登记拒收）
+  ├─ decide（清单 → PASS / FAIL / UNKNOWN）
+  ├─ plan_next（结论 + 剩余修复次数 → READY / FIXING / STOPPED）
+  ├─ fixes_remaining 计数（预算不减到负数）
+  └─ 任一环节出错 → Err(Transition / DuplicateCheck / ScriptExhausted)
+  ▼
+SimulationReport
+  = TaskRecord（第 3 章模型：runs + verdict + stop_reason）
+  + final_status + attempts_used + fixes_used + decisions[]
+```
+
+注意流向是单向的：脚本在入口进、档案在出口出，中间的判断没有一个字段由脚本决定。这正是"Agent 不能自己宣布完成"。
+
 ## 设计思路
 
 | 决策 | 理由 |
